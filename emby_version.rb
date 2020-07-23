@@ -12,11 +12,11 @@ class MetasploitModule < Msf::Auxiliary
       super(
         'Name'           => 'Emby Version Checker',
         'Description'    => %q{
-            This module attempts to identify the version of an Emby Server running on a
-            host. If you wish to see all the information available, set VERBOSE to true.
+            This module attempts to identify the version of an Emby Media Server running on 
+            a host. If you wish to see all the information available, set VERBOSE to true.
           },
         'Author'         => 'Btnz',
-        'Version'        => '0.0.2020.07.22',
+        'Version'        => '0.0.2020.07.22.2',
         'License'        => MSF_LICENSE
       )
   
@@ -42,17 +42,18 @@ class MetasploitModule < Msf::Auxiliary
           end
       
           result = res.get_json_document
-          print_status("Identifying Emby Server Version on #{peer}")
-          print_good("[Emby Server] Version: #{result['Version']}")
+          print_status("Identifying Media Server Version on #{peer}")
+          print_good("[Media Server] Version: #{result['Version']}")
+          print_good("[Media Server] Platform: #{result['ServerName']}")
           report_service(:host => rhost, :port => rport, :name => "emby", :info => "Emby Server v.#{result['Version']} (LAN:#{result['LocalAddress']})" )
           print_status ("All info: #{result.to_s}") if datastore['VERBOSE']
           report_note(
               :host  => ip,
               :port  => rport,
               :proto => 'tcp',
-              :ntype => 'emby_version',
+              :ntype => "server_version",
               :data  => result['Version'],
-              :info  => "Emby Server v.#{result['Version']}"
+              :info  => "Media Server v.#{result['Version']}"
           )
           print_status("Saving host information.")
           report_host(
@@ -61,4 +62,3 @@ class MetasploitModule < Msf::Auxiliary
           )
         end
   end
-  
