@@ -16,13 +16,14 @@ class MetasploitModule < Msf::Auxiliary
             a host. If you wish to see all the information available, set VERBOSE to true.
           },
         'Author'         => 'Btnz',
-        'Version'        => '0.0.2020.07.22.2',
+        'Version'        => '0.0.2020.07.23.1',
         'License'        => MSF_LICENSE
       )
   
       register_options(
         [
           Opt::RPORT(8096),
+          OptString.new('BASEPATH', [true, 'The base path, usually just /', '/']),
           OptInt.new('TIMEOUT', [true, 'Timeout for the version checker', 30])
         ])      
     end
@@ -34,7 +35,7 @@ class MetasploitModule < Msf::Auxiliary
 
     def run_host(ip)
         res = send_request_cgi({
-            'uri' => '/System/Info/Public',
+            'uri' => "#{datastore['BASEPATH']}System/Info/Public",
             'method' => 'GET'})
           if res.nil? || res.code != 200
             print_error("[Emby Version] failed to identify version")
@@ -43,8 +44,9 @@ class MetasploitModule < Msf::Auxiliary
       
           result = res.get_json_document
           print_status("Identifying Media Server Version on #{peer}")
+          print_good("[Media Server] URI: http://#{ip}:#{rport}#{datastore['BASEPATH']}")
           print_good("[Media Server] Version: #{result['Version']}")
-          print_good("[Media Server] Platform: #{result['ServerName']}")
+          print_good("[Media Server] Internal IP: #{result['LocalAddress']}")
           report_service(:host => rhost, :port => rport, :name => "emby", :info => "Emby Server v.#{result['Version']} (LAN:#{result['LocalAddress']})" )
           print_status ("All info: #{result.to_s}") if datastore['VERBOSE']
           report_note(
@@ -62,3 +64,4 @@ class MetasploitModule < Msf::Auxiliary
           )
         end
   end
+  
