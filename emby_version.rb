@@ -1,6 +1,6 @@
 ##
 # This module requires Metasploit: https://metasploit.com/download
-# Current source: https://github.com/btnz-k/emby_ssrf
+# Current source: https://github.com/btnz-k/msf_emby
 ##
 
 class MetasploitModule < Msf::Auxiliary
