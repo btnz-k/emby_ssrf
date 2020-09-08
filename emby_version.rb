@@ -16,7 +16,7 @@ class MetasploitModule < Msf::Auxiliary
             a host. If you wish to see all the information available, set VERBOSE to true.
           },
         'Author'         => 'Btnz',
-        'Version'        => '0.0.2020.07.23.1',
+        'Version'        => '1.0.2020.09.08.01',
         'License'        => MSF_LICENSE
       )
   
@@ -26,6 +26,8 @@ class MetasploitModule < Msf::Auxiliary
           OptString.new('BASEPATH', [true, 'The base path, usually just /', '/']),
           OptInt.new('TIMEOUT', [true, 'Timeout for the version checker', 30])
         ])      
+
+      deregister_options('VHOST')
     end
 
     def to
@@ -38,7 +40,7 @@ class MetasploitModule < Msf::Auxiliary
             'uri' => "#{datastore['BASEPATH']}System/Info/Public",
             'method' => 'GET'})
           if res.nil? || res.code != 200
-            print_error("[Emby Version] failed to identify version")
+            vprint_error("[Emby Version] failed to connect")
             return
           end
       
