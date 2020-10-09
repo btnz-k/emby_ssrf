@@ -16,7 +16,7 @@ class MetasploitModule < Msf::Auxiliary
             a host. If you wish to see all the information available, set VERBOSE to true.
           },
         'Author'         => 'Btnz',
-        'Version'        => '1.0.2020.09.08.01',
+        'Version'        => '1.0.2020.10.09.01',
         'License'        => MSF_LICENSE
       )
   
