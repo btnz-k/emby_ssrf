@@ -27,8 +27,7 @@ class MetasploitModule < Msf::Auxiliary
           OptInt.new('TIMEOUT', [true, 'Timeout for the version checker', 30])
         ])      
 
-      deregister_options('VHOST')
-    end
+    deregister_options('VHOST','FILTER','INTERFACE','PCAPFILE','SNAPLEN','SSL')    end
 
     def to
         return 30 if datastore['TIMEOUT'].to_i.zero?
