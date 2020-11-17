@@ -1,6 +1,14 @@
 ##
 # This module requires Metasploit: https://metasploit.com/download
-# Current source: https://github.com/btnz-k/emby_ssrf
+# Current source: https://github.com/btnz-k/msf_emby
+# Exploit Title: Emby SSRF HTTP Scanner
+# Date: 2020.11.17
+# Exploit Author: Btnz
+# Vendor Homepage: https://emby.media/
+# Software Link: https://emby.media/download.html
+# Version: Prior to 4.5
+# Tested on: Ubuntu, Windows
+# CVE : CVE-2020-26948
 ##
 
 class MetasploitModule < Msf::Auxiliary
@@ -11,7 +19,7 @@ class MetasploitModule < Msf::Auxiliary
 
   def initialize
     super(
-      'Name'           => 'Emby HTTP Scanner',
+      'Name'           => 'Emby SSRF HTTP Scanner',
       'Description'    => %q{
       Utilizes the SSRF vulnerability in Emby Server prior to 4.5.0 to attempt to pull the
       title tag from internal websites. Based on the vulnerability CVE-2020-26948.
