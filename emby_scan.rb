@@ -14,10 +14,10 @@ class MetasploitModule < Msf::Auxiliary
       'Name'           => 'Emby HTTP Scanner',
       'Description'    => %q{
       Utilizes the SSRF vulnerability in Emby Server prior to 4.5.0 to attempt to pull the
-      title tag from internal websites.
+      title tag from internal websites. Based on the vulnerability CVE-2020-26948.
       },
       'Author'         => 'Btnz',
-      'Version'        => '1.0.2020.10.09.01',
+      'Version'        => '1.0.2020.11.17.01',
       'License'        => MSF_LICENSE
     )
 
