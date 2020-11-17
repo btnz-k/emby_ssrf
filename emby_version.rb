@@ -13,7 +13,7 @@ class MetasploitModule < Msf::Auxiliary
         'Name'           => 'Emby Version Checker',
         'Description'    => %q{
             This module attempts to identify the version of an Emby Media Server running on 
-            a host. If you wish to see all the information available, set VERBOSE to true.
+            a host. If you wish to see all the information available, set VERBOSE to true. Based on the vulnerability CVE-2020-26948.
           },
         'Author'         => 'Btnz',
         'Version'        => '1.0.2020.10.09.01',
