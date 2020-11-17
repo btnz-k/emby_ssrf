@@ -1,6 +1,14 @@
 ##
 # This module requires Metasploit: https://metasploit.com/download
 # Current source: https://github.com/btnz-k/msf_emby
+# Exploit Title: Emby Version Checker
+# Date: 2020.11.17
+# Exploit Author: Btnz
+# Vendor Homepage: https://emby.media/
+# Software Link: https://emby.media/download.html
+# Version: Prior to 4.5
+# Tested on: Ubuntu, Windows
+# CVE : CVE-2020-26948
 ##
 
 class MetasploitModule < Msf::Auxiliary
