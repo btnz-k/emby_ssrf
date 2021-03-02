@@ -2,7 +2,7 @@
 # This module requires Metasploit: https://metasploit.com/download
 # Current source: https://github.com/btnz-k/msf_emby
 # Exploit Title: Emby Version Checker
-# Date: 2020.11.17
+# Date: 2021.03.01
 # Exploit Author: Btnz
 # Vendor Homepage: https://emby.media/
 # Software Link: https://emby.media/download.html
@@ -11,6 +11,9 @@
 # CVE: CVE-2020-26948
 ##
 
+# frozen_string_literal: true
+
+# msf::aux class
 class MetasploitModule < Msf::Auxiliary
   include Msf::Exploit::Remote::HttpClient
   include Msf::Auxiliary::Scanner
@@ -21,10 +24,11 @@ class MetasploitModule < Msf::Auxiliary
       'Name' => 'Emby Version Checker',
       'Description' => '
             This module attempts to identify the version of an Emby Media Server running on
-            a host. If you wish to see all the information available, set VERBOSE to true. Based on the vulnerability CVE-2020-26948.
+            a host. If you wish to see all the information available, set VERBOSE to true.
+            Based on the vulnerability CVE-2020-26948.
           ',
       'Author' => 'Btnz',
-      'Version' => '1.0.2020.10.09.01',
+      'Version' => '1.0.2021.03.01.01',
       'License' => MSF_LICENSE
     )
 
@@ -59,7 +63,12 @@ class MetasploitModule < Msf::Auxiliary
     print_good("[Media Server] URI: http://#{ip}:#{rport}#{datastore['BASEPATH']}")
     print_good("[Media Server] Version: #{result['Version']}")
     print_good("[Media Server] Internal IP: #{result['LocalAddress']}")
-    report_service(host: rhost, port: rport, name: 'emby', info: "Emby Server v.#{result['Version']} (LAN:#{result['LocalAddress']})")
+    report_service(
+      host: rhost,
+      port: rport,
+      name: 'emby',
+      info: "Emby Server v.#{result['Version']} (LAN:#{result['LocalAddress']})"
+    )
     print_status "All info: #{result}" if datastore['VERBOSE']
     report_note(
       host: ip,
@@ -74,5 +83,5 @@ class MetasploitModule < Msf::Auxiliary
       host: ip,
       info: "Emby Server v.#{result['Version']} (LAN:#{result['LocalAddress']})"
     )
-    end
+  end
 end
