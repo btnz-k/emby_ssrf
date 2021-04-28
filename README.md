@@ -3,7 +3,7 @@
 This tool will check a remote EMBY server to attempt to use an SSRF vulnerability to perform an http scan of the network internal to the EMBY server. This is based on the vulnerability CVE-2020-26948.
 
 ## Installation
-Clone the repo and put the emby_version.rb file into the `/usr/share/metasploit-framework/modules/auxiliary/scanner/http/` directory, and the emby_scan.rb file into the `/usr/share/metasploit-framework/modules/auxiliary/scanner/` directory. Run msfconsole, and use the modules from there.
+Clone the repo and put the emby_version_ssrf.rb file into the `/usr/share/metasploit-framework/modules/auxiliary/scanner/http/` directory, and the emby_ssrf_scanner.rb file into the `/usr/share/metasploit-framework/modules/auxiliary/scanner/` directory. Run msfconsole, and use the modules from there.
 
 ## Help
 Emby_Version:
